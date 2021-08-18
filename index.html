@@ -84,8 +84,22 @@
     <img src="./rest_api_example.png"/>
   </div>
   <script>
-    var host = window.location.host;
-    var ws = new WebSocket('ws://'+host+'/ws');
+    var host = window.location.host + window.location.pathname;
+    var ws_protocol = null;
+    if (location.protocol.startsWith("https") === true) {
+        ws_protocol = "wss";
+    } else {
+        ws_protocol = "ws"
+    }
+
+    var ws_url = null;
+    if (host.endsWith('/') === true) {
+        ws_url = host + 'ws';
+    } else {
+        ws_url = host + '/ws';
+    }
+
+    var ws = new WebSocket(ws_protocol + '://' + ws_url);
     var $message = $('#message');
 
     ws.onopen = function(){
