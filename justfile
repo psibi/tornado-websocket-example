@@ -7,8 +7,7 @@ build-docker version:
 login:
     docker login docker.io
 
-push version:
-    just build-docker {{version}}
+push version: (build-docker version)
     docker push psibi/tornado-websocket:v{{version}}
 
 run version:
