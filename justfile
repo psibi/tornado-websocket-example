@@ -1,7 +1,7 @@
 default:
     just --list
 
-build-docker version:
+build-docker version='0.4':
     docker image build . -f Dockerfile -t psibi/tornado-websocket:v{{version}}
 
 login:
